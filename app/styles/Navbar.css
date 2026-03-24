@@ -1,0 +1,75 @@
+/*====================NAVBAR====================*/
+.nav-container {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(9, 10, 18, 0.94);
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+}
+.nav-item:last-child {
+  flex: 1;
+}
+
+/*====================BACK BUTTON====================*/
+.back-btn {
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid #f8f9fa;
+  color:#f8f9fa;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;;
+}
+.back-btn:hover {
+  background:#5a189a;
+  color: #f8f9fa;
+}
+
+/*====================SEARCH====================*/
+.search {
+  display: flex;
+  align-items: center;
+  background: #f8f9fa;
+  border: 1px solid #5a189a;
+  border-radius: 22px;
+  padding: 0 12px;
+  height: 38px;
+  width: 100%;
+  gap: 8px;
+}
+.search:focus-within {
+  border-color: #5a189a;
+}
+.search-input {
+  background: none;
+  border: none;
+  outline: none;
+  color:#1e1e2f;
+  font-size: 14px;
+  width: 100%;
+}
+.search-input::placeholder {
+  color: #555;
+}
+.search-btn {
+  background: none;
+  border: none;
+  color: #5a189a;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 0;
+}

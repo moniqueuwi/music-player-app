@@ -1,0 +1,307 @@
+/*====================GLOBAL====================*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #000100;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+/*====================MOBILE====================*/
+#mobile {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #090A12 0%, #040406 60%, #000100 100%);
+  color: #f8f9fa;
+}
+
+/*====================AMBIENT BLOBS====================*/
+.blob {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(80px);
+}
+.blob-1 {
+  width: 340px;
+  height: 340px;
+  background:#5A189A;
+  top: -80px;
+  right: -80px;
+}
+.blob-2 {
+  width: 280px;
+  height: 280px;
+  background:#27187E;
+  bottom: 100px;
+  left: -70px;
+}
+
+/*====================PLAYER====================*/
+.player {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+  margin: 0 auto;
+}
+
+/*====================ALBUM COVER====================*/ 
+.album-wrapper {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+  cursor: pointer;
+  touch-action: pan-y;
+  box-shadow: 0 8px 40px rgba(90, 24,154,0.4),0 0 0 3px rgba(39, 24,126,0.15);
+}
+.album-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  touch-action: pan-y;
+}
+.album-cover:active {
+  transform: scale(0.95);
+}
+
+/*====================SPINNING ANIMATION====================*/
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.album-cover.spinning {
+  animation: spin 8s linear infinite;
+}
+
+/*====================SONG INFO====================*/
+.song-info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 0 4px;
+  gap: 8px;
+}
+
+.song-info-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.song-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 20px;
+  text-align: center;
+}
+.song-info-row .song-title {
+  margin-top: 0;
+  text-align: left;
+}
+.artist {
+  font-size: 14px;
+  opacity: 0.5;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.song-info-row .artist {
+  margin-bottom: 0;
+  text-align: left;
+}
+
+/*====================LIKED BUTTON====================*/
+.like-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  font-size: 20px;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.like-btn:hover {
+  transform: scale(1.25);
+}
+.like-btn.liked {
+  filter: drop-shadow(0 0 6px #e03030);
+}
+
+/*====================PROGRESS BAR====================*/
+.seek-wrap {
+  width: 100%;
+  margin-top: 4px;
+}
+.seek-bar {
+  width: 100%;
+  appearance: none;
+  height: 4px;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  background: #5A189A;
+}
+.seek-bar::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  background: #f8f9fa;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(90, 24,154,0.7);
+  cursor: pointer;
+}
+
+/*====================TIME DISPLAY====================*/
+.time-display {
+  font-size: 13px;
+  opacity: 0.45;
+  margin-top: 6px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/*====================PLAYBACK CONTROLS====================*/
+.controls {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.control-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: rgba(255, 255, 255,0.7);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.control-btn:hover {
+  color: #5A189A;
+  transform: scale(1.1);
+}
+.control-btn.active {
+  color: #5A189A;
+}
+
+/*====================PLAY BUTTON====================*/
+.play-btn {
+  width: 64px !important;
+  height: 64px !important;
+  border-radius: 50% !important;
+  background: linear-gradient(135deg, #5A189A, #27187E) !important;
+  border: none !important;
+  box-shadow: 0 4px 28px rgba(90, 24,154,0.6) !important;
+  font-size: 24px !important;
+  color: #f8f9fa !important;
+  transition:  transform 0.2s, box-shadow 0.2s !important;
+}
+.play-btn:hover {
+  color: #f8f9fa !important;
+  transform: scale(1.08) !important;
+  box-shadow: 0 0 36px rgba(90, 24,154,0.8) !important;
+}
+.play-btn:active {
+  transform: scale(0.96) !important;
+}
+
+/*====================SHUFFLE BUTTON====================*/
+.shuffle-btn i {
+  transition: color 0.2s, filter 0.2s;
+}
+.shuffle-btn.active i {
+  color: #5A189A;
+}
+
+/*====================QUEUE SECTION(TOGGLE ROW)====================*/
+.queue-section {
+  position: relative;
+  z-index: 5;
+  padding: 0 20px 32px;
+}
+.queue-divider {
+  height: 1px;
+  background: rgba(90, 24,154,0.25);
+  margin-bottom: 14px;
+}
+.queue-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  margin-bottom: 4px;
+}
+.queue-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #f8f9fa;
+}
+.queue-toggle-btn {
+  background: none;
+  border: none;
+  color: #f8f9fa;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+  line-height: 1;
+}
+.queue-toggle-btn:hover {
+  background: #f8f9fa;
+  color: #27187E;
+}
+
+/*====================QUEUE SECTION(TOGGLE ROW)====================*/
+@media (max-width: 480px) {
+  .album-wrapper {
+    width: 160px;
+    height: 160px;
+  }
+  .song-title {
+    font-size: 16px;
+    text-align: center;
+  }
+  .controls {
+    gap: 12px;
+  }
+}
+
+@media (min-width: 768px) {
+  #mobile {
+    max-width: 500px;
+  }
+  .album-wrapper {
+    width: 220px;
+    height: 220px;
+  }
+}

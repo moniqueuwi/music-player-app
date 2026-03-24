@@ -1,0 +1,31 @@
+/*====================VOLUME CONTROL====================*/
+.volume-control {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: #f8f9fa;
+}
+.volume-slider {
+  flex: 1;
+  appearance: none;
+  height: 4px;
+  border-radius: 3px;
+  cursor: pointer;
+  outline: none;
+  max-width: 220px;
+}
+.volume-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  background: #f8f9fa;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.volume-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
