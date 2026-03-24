@@ -1,4 +1,4 @@
-import "../styles/Player.css";
+import "../styles/player.css";
 import songs from "../data/songs";
 import { useAudioPlayer } from "../hooks/useAudioPlayer";
 import { usePlayerState } from "../hooks/usePlayerState";

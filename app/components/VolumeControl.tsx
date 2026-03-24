@@ -1,4 +1,4 @@
-import "../styles/volumrControl.css";
+import "../styles/volumeControl.css";
 // volume control component
 type VolumeControlProps = {
   volume: number;
