@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import songs from "../data/songs";
 import type { PlayerState } from "./usePlayerState";
 
-// ─── All playback control functions ─────────────────────────────────────────
+/*=========================PLAYBACK CONTROL=========================*/
 export function usePlayerControls(state: PlayerState) {
   const {
     shuffle,
@@ -15,7 +15,7 @@ export function usePlayerControls(state: PlayerState) {
     audioRef,
   } = state;
 
-  // ── Play / Pause ──────────────────────────────────────────────────────────
+  /*=========================PLAY / PAUSE=========================*/
   function togglePlay(): void {
     const audio = audioRef.current;
     if (!audio) return;
@@ -28,7 +28,7 @@ export function usePlayerControls(state: PlayerState) {
     }
   }
 
-  // ── Next song (respects shuffle) ──────────────────────────────────────────
+  /*=========================NEXT SONG(RESPECTS SHUFFLE)=========================*/
   const handleNext = useCallback(() : void => {
     setCurrentSong(prev => 
       shuffle
@@ -37,19 +37,19 @@ export function usePlayerControls(state: PlayerState) {
     );
   }, [shuffle, setCurrentSong]);
 
-  // ── Previous song ─────────────────────────────────────────────────────────
+  /*=========================PREVIOUS SONG=========================*/
   function handlePrev() : void {
     setCurrentSong(prev => (prev - 1 + songs.length) % songs.length);
   }
 
-  // ── Seek to position ─────────────────────────────────────────────────────
+  /*=========================SEEK TO POSITION=========================*/
   function handleSeek(e: React.ChangeEvent<HTMLInputElement>) : void {
     const val = parseFloat(e.target.value);
     if (audioRef.current) audioRef.current.currentTime = val;
     setCurrentTime(val);
   }
 
-  // ── Toggle like for current song ─────────────────────────────────────────
+  /*=========================TOGGLE LIKE FOR CURRENT SONG=========================*/
   function toggleLike() : void {
     const id = songs[currentSong].id;
     setLiked((prev: number[]) => 
@@ -62,5 +62,5 @@ export function usePlayerControls(state: PlayerState) {
   return { togglePlay, handleNext, handlePrev, handleSeek, toggleLike };
 }
 
-// ─── Export return type for use in player.tsx ────────────────────────────────
+/*=========================RETURN TYPE FOR IN PLAYER.TSX=========================*/
 export type PlayerControls = ReturnType<typeof usePlayerControls>;

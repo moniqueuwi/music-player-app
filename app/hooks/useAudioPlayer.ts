@@ -2,7 +2,7 @@ import { useEffect, useCallback } from "react";
 import songs from "../data/songs";
 import type { PlayerState } from "./usePlayerState";
 
-// ─── Handles: load song, audio event listeners, sync volume, persist liked ───
+/*=========================HANDLES: SONGS, AUDIO EVENT, VOLUME, LIKED=========================*/
 export function useAudioPlayer(state: PlayerState) {
   const {
     currentSong, setCurrentSong,
@@ -15,7 +15,7 @@ export function useAudioPlayer(state: PlayerState) {
     audioRef,
   } = state;
 
-  // ── Load song whenever currentSong index changes ──────────────────────────
+  /*=========================LOAD SONGS WHEN CURRENT SONGS INDEX CHANGES=========================*/
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -28,7 +28,7 @@ export function useAudioPlayer(state: PlayerState) {
     }
   }, [currentSong]);
 
-  // ── Update metadata on loaded song ─────────────────────────────────────
+  /*=========================UPDATE METADATA ON LOAD=========================*/
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -41,12 +41,12 @@ export function useAudioPlayer(state: PlayerState) {
     };
   }, [audioRef]);
 
-  // ── handleNext defined here so onEnded can reference it ──────────────────
+  /*=========================NEXT SONGS=========================*/
   const handleNext = useCallback(() => {
     setCurrentSong(prev => (prev + 1) % songs.length);
   }, [setCurrentSong]);
 
-  // ── Audio event listeners ─────────────────────────────────────────────────
+  /*=========================AUDIO EVENT LISTENERS=========================*/
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -79,12 +79,12 @@ export function useAudioPlayer(state: PlayerState) {
     };
   }, [repeat, handleNext]); 
 
-  // ── Sync volume whenever it changes ──────────────────────────────────────
+  /*=========================VOLUME=========================*/
   useEffect(() => {
     if (audioRef.current) audioRef.current.volume = volume / 100;
   }, [volume]);
 
-  // Persiet liked songs in localstorage
+  /*=========================LIKED SONGS IN LOCALSTORAGE=========================*/
   useEffect(() => {
     localStorage.setItem("likedSongs", JSON.stringify(liked));
   }, [liked]);

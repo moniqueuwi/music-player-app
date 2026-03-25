@@ -1,6 +1,6 @@
 import type { PlayerState } from "./usePlayerState";
 
-// ─── Swipe left/right on album cover to change song ─────────────────────────
+/*=========================SWIPE LEFT/RIGHT ON ALBUM COVER TO CHANGE SONG=========================*/
 export function useSwipe(
   state: PlayerState,
   handleNext: () => void,
@@ -8,7 +8,7 @@ export function useSwipe(
 ) {
   const { startXRef, dragging } = state;
 
-  // ── Mouse support ─────────────────────────────────────────────────────────
+  /*=========================MOUSE SUPPORT=========================*/
   function onMouseDown(e: React.MouseEvent): void {
     dragging.current = true;
     startXRef.current = e.clientX;
@@ -22,7 +22,7 @@ export function useSwipe(
     if (diff < -50) handlePrev();
   }
 
-  // ── Touch support ─────────────────────────────────────────────────────────
+  /*=========================TOUCH SUPPORT=========================*/
   function onTouchStart(e: React.TouchEvent): void {
     startXRef.current = e.touches[0].clientX;
   }

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import songs from "../data/songs";
 
-// ─── All player state and refs in one place ──────────────────────────────────
+/*=========================ALL PLAYER STATE AND REF=========================*/
 export function usePlayerState() {
   const [currentSong, setCurrentSong] = useState<number>(0);
   const [isPlaying,   setIsPlaying]     = useState<boolean>(false);
@@ -14,7 +14,7 @@ export function usePlayerState() {
   const [liked,       setLiked]       = useState<number[]>([]);
   const [showQueue,   setShowQueue]   = useState<boolean>(false);
 
-  //load from localstorage
+  /*=========================LOAD FROM LOCALSTORAGE=========================*/
   useEffect(() => {
     const savedSong = localStorage.getItem("selectedSongIndex");
     if (savedSong !== null) {
@@ -34,7 +34,7 @@ export function usePlayerState() {
     }
   }, []);
 
-  //save to localstorage
+  /*=========================SAVE TO LOCALSTORAGE=========================*/
   useEffect(() => {
     localStorage.setItem("selectedSongIndex", String(currentSong));
   }, [currentSong]);
@@ -43,13 +43,13 @@ export function usePlayerState() {
     localStorage.setItem("likedSongs", JSON.stringify(liked));
   }, [liked]);
 
-  // ── Refs ──────────────────────────────────────────────────────────────────
+  /*=========================REF=========================*/
   const audioRef    = useRef<HTMLAudioElement>(null);
   const startXRef   = useRef<number | null>(null);
   const dragging    = useRef<boolean>(false);
 
   return {
-    // state values
+    /*=========================STATE VALUES=========================*/
     currentSong,  setCurrentSong,
     isPlaying,    setIsPlaying,
     currentTime,  setCurrentTime,
@@ -60,12 +60,12 @@ export function usePlayerState() {
     search,       setSearch,
     liked,        setLiked,
     showQueue,    setShowQueue,
-    // refs
+    /*=========================REF=========================*/
     audioRef,
     startXRef,
     dragging,
   };
 }
 
-// ─── Export the return type so other hooks can use it ────────────────────────
+/*=========================RETURN TYPE=========================*/
 export type PlayerState = ReturnType<typeof usePlayerState>;
