@@ -10,12 +10,13 @@ body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
+  overflow-x: hidden;
 }
 
 /*====================MOBILE====================*/
 #mobile {
   width: 100%;
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   background: linear-gradient(180deg, #090A12 0%, #040406 60%, #000100 100%);
