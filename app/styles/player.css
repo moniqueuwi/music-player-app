@@ -53,7 +53,7 @@ body {
   align-items: center;
   flex: 1;
   position: relative;
-  margin: 0 auto;
+  margin: auto;
 }
 
 /*====================ALBUM COVER====================*/ 
@@ -281,24 +281,49 @@ body {
   color: #27187E;
 }
 
-/*====================QUEUE SECTION(TOGGLE ROW)====================*/
+/*====================RESPONSIVE====================*/
 @media (max-width: 480px) {
+  #mobile {
+    padding: 10px;
+  }
+  .player {
+    padding: 16px;
+    margin: auto;
+  }
   .album-wrapper {
-    width: 160px;
-    height: 160px;
+    width: 150px;
+    height: 150px;
   }
   .song-title {
-    font-size: 16px;
+    font-size: 15px;
     text-align: center;
   }
+  .artist {
+    font-size: 15px;
+    text-align: center;
+  }  
   .controls {
-    gap: 12px;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .control-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+  .play-btn {
+    width: 55px !important;
+    height: 55px !important;
+  }
+  .queue-section {
+    padding: 0 10px 20px;
   }
 }
 
 @media (min-width: 768px) {
   #mobile {
     max-width: 500px;
+    margin: 0 auto;
   }
   .album-wrapper {
     width: 220px;
